@@ -81,12 +81,12 @@ def get_alcohol_pairings():
     + f'Beer: {beer_drink}\n'
     + f'Wine: {wine_drink}\n')
                 
-    save = input('Would you like to save this drink selection?? y or n: ')
-    if save == 'y':
+    save = input('Would you like to save this drink selection?? press Y to save, otherwise hit enter to continue: ').upper()
+    if save == 'Y':
         save_selection(food, cocktail_drink, beer_drink, wine_drink) # saves the food, cocktail, beer, wine into the database
 
-    picture = input('Would you like to view a picture of the drink in your web browsers?? y or n: ')
-    if picture == 'y':
+    picture = input('Would you like to view a picture of the drink in your web browsers?? press Y to view otherwise hit enter to continue: ').upper()
+    if picture == 'Y':
         cocktialdata = cocktail.get_cocktail_data()
         cocktailpicutre = cocktialdata.picture()
         print(f'Here is the url for your picutre simply copy and paste into your browser for your picture: {cocktailpicutre}')

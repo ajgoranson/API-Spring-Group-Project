@@ -11,6 +11,9 @@ class Cocktail:
     def drink(self):
         return self.cocktail_api_data['drinks'][0]['strDrink'] # returns the cocktail drink extracted from the api data
 
+    def picture(self):
+        return self.cocktail_api_data['drinks'][0]['strDrinkThumb']
+
 class Beer:
     def __init__(self, beer_api_data):
         self.beer_api_data = beer_api_data 

@@ -5,6 +5,7 @@ from alcohol import *
 import os
 import sqlite3
 
+
 db = os.path.join('database', 'food_alcohol_pairing.db')
 
 def main():
@@ -83,8 +84,16 @@ def get_alcohol_pairings():
     save = input('Would you like to save this drink selection?? y or n: ')
     if save == 'y':
         save_selection(food, cocktail_drink, beer_drink, wine_drink) # saves the food, cocktail, beer, wine into the database
+
+    picture = input('Would you like to view a picture of the drink in your web browsers?? y or n: ')
+    if picture == 'y':
+        cocktialdata = cocktail.get_cocktail_data()
+        cocktailpicutre = cocktialdata.picture()
+        print(f'Here is the url for your picutre simply copy and paste into your browser for your picture: {cocktailpicutre}')
+        main()
     else:
         main()
+    
 
 def delete_recent_data():
 

@@ -1,4 +1,5 @@
 # This program selects the best alcoholic drink that goes with your food
+from sqlite3.dbapi2 import Cursor
 import cocktail, beer, wine
 from alcohol import *
 import os
@@ -9,7 +10,6 @@ db = os.path.join('database', 'food_alcohol_pairing.db')
 def main():
     while True:
         try:
-            banner()
             menu() # prints the menu
             selection = int(input('Select from the Menu:  '))
 
@@ -27,14 +27,12 @@ def main():
             print(e)
 
 def menu():
-    print ('Menu: \n'
+    print ('\n Menu: \n'
     '1: Find a cocktail, beer, and wine for your food\n'
     '2: Display your recent saves \n'
     '3: Delete saved data\n'
     'Any other number to quit\n')
 
-def banner():
-    print('\nPair an alcoholic beverage with your food\n')
 
 def save_selection(food, cocktail, beer, wine):
     food_alcohol = Food_Alcohol(food, cocktail, beer, wine)
@@ -43,18 +41,25 @@ def save_selection(food, cocktail, beer, wine):
 def show_pairings():
     """ returns entire database """
 
-    get_all_pairings = 'SELECT food, * FROM food_alcohol'
+    try:
 
-    con = sqlite3.connect(db)
-    con.row_factory = sqlite3.Row
-    rows = con.execute(get_all_pairings)
+        get_all_pairings = 'SELECT food, * FROM food_alcohol'
 
-    print('\nFor each food, the following drinks are suggested')
-    for r in rows:
-        print(f"\nFor {r['food']}, the following drinks are suggested:\n"
-        f"Cocktail: {r['cocktail']}\n"
-        f"Beer: {r['beer']}\n"
-        f"Wine: {r['wine']}\n")
+        con = sqlite3.connect(db)
+        con.row_factory = sqlite3.Row
+        rows = con.execute(get_all_pairings)
+        
+        if rows == 0:
+            print('Sorry looks like you havent saved any food pairings yet. Try again after you save some data')
+        else:
+            for r in rows:
+                print(f"\nFor {r['food']}, the following drinks are suggested:\n"
+                f"Cocktail: {r['cocktail']}\n"
+                f"Beer: {r['beer']}\n"
+                f"Wine: {r['wine']}\n")
+
+    except Exception as e:
+        print('There was an error finding your saved data, try saving some data then looking first' + e)
 
 def get_alcohol_pairings():
     food = input('Enter the food: ')  #user is prompted to enter a food
@@ -85,8 +90,14 @@ def delete_recent_data():
 
     delete_data = 'DELETE FROM food_alcohol'
 
-    con = sqlite3.connect(db)
-    con.execute(delete_data)
+    try:
+        with sqlite3.connect(db) as conn:
+            conn.execute(delete_data)
+        conn.close()
+    except Exception as e:
+        print('There was an error deleting data, try saving some data first' + e)
+
+
 
 
 

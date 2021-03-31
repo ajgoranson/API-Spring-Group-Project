@@ -1,6 +1,6 @@
 # This program selects the best alcoholic drink that goes with your food
 import cocktail, beer, wine
-from alcohol import Cocktail, Food_Alcohol, Beer, Wine
+from alcohol import *
 import os
 import sqlite3
 

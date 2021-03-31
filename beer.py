@@ -1,7 +1,7 @@
 import requests
 from alcohol import Beer
 from random import randrange
-    
+
 def get_beer_data():
     try:
         randomint = randrange(325)

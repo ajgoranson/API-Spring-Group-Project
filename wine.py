@@ -9,4 +9,5 @@ def get_wine_data(order):
     wine='%s'%(order)
     params = {'wine': wine, 'apiKey': key}
     wine_data = requests.get(url, params).json()
+
     return Wine(wine_data) # stores the wine api data in a wine class

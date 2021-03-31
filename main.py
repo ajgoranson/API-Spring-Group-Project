@@ -50,7 +50,8 @@ def show_pairings():
         con.row_factory = sqlite3.Row
         rows = con.execute(get_all_pairings)
         
-        if rows == 0:
+
+        if rows is None:
             print('Sorry looks like you havent saved any food pairings yet. Try again after you save some data')
         else:
             for r in rows:
@@ -87,12 +88,10 @@ def get_alcohol_pairings():
 
     picture = input('Would you like to view a picture of the drink in your web browsers?? press Y to view otherwise hit enter to continue: ').upper()
     if picture == 'Y':
-        cocktialdata = cocktail.get_cocktail_data()
-        cocktailpicutre = cocktialdata.picture()
-        print(f'Here is the url for your picutre simply copy and paste into your browser for your picture: {cocktailpicutre}')
-        main()
+        show_picture()
     else:
         main()
+
     
 
 def delete_recent_data():
@@ -105,6 +104,28 @@ def delete_recent_data():
         conn.close()
     except Exception as e:
         print('There was an error deleting data, try saving some data first' + e)
+
+def show_picture():
+
+    cocktaildata = cocktail.get_cocktail_data()
+    cocktailpicutre = cocktaildata.picture()
+    print(f'Here is the url for your picutre simply copy and paste into your browser for your picture: {cocktailpicutre}')
+
+    instructions_ingredients = input('Does this drink look incredibly tasty??? Would you like to know how to make it? Press Y or hit enter to contiune: ').upper()
+
+    if instructions_ingredients == 'Y':
+        show_instructions()
+    main()
+
+
+def show_instructions():
+    cocktaildata = cocktail.get_cocktail_data()
+    cocktail_instructions = cocktaildata.instuctions()
+    cocktail_ingredients = cocktaildata.ingredients()
+
+
+    print(f'Here are the ingredients you will need! {cocktail_ingredients} To make the cockail here is the instructions \n {cocktail_instructions}')
+    main()
 
 
 

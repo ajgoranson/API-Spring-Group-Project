@@ -14,6 +14,13 @@ class Cocktail:
     def picture(self):
         return self.cocktail_api_data['drinks'][0]['strDrinkThumb']
 
+    def ingredients(self):
+        return self.cocktail_api_data['drinks'][0]['strIngredient1'],self.cocktail_api_data['drinks'][0]['strIngredient2'], self.cocktail_api_data['drinks'][0]['strIngredient3']
+
+    
+    def instuctions(self):
+        return self.cocktail_api_data['drinks'][0]['strInstructions']
+
 class Beer:
     def __init__(self, beer_api_data):
         self.beer_api_data = beer_api_data 

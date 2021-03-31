@@ -8,12 +8,15 @@ Please download the required assets in the requirements.txt file
 You can save pairings that you want with your food of choice in a database, and you can delete food of choice in the database.
 It uses a SQL database, and modules to organize the data accordingly, any questions message the slack channel
 
+use pip install requirements to download all the required plug-ins
+
+
 
 Developers
-Aaron >:)
-Eric :}
-Abdifatah <:)>
-Chris |:)|
+Aaron [ >:) ]
+Eric { >:) }
+Abdifatah <  >:)  >
+Chris |  >:) |
 
 
 <h2>Pictures</h2>

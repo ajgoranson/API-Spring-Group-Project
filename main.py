@@ -20,8 +20,6 @@ def main():
                 show_pairings()
             elif selection == 3:
                 delete_recent_data()
-            elif selection == 4:
-                exit()
             else:
                 quit()
         except Exception as e:
@@ -126,10 +124,6 @@ def show_instructions():
 
     print(f'Here are the ingredients you will need! {cocktail_ingredients} To make the cockail here is the instructions \n {cocktail_instructions}')
     main()
-
-
-
-
 
 
 

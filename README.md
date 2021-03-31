@@ -10,6 +10,7 @@ It uses a SQL database, and modules to organize the data accordingly, any questi
 
 use pip install requirements to download all the required plug-ins
 
+run on the main.py file
 
 
 Developers
